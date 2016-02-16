@@ -1,0 +1,2 @@
+EXPORTS
+    vmem2_set_callbacks @1
