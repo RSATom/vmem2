@@ -8,7 +8,8 @@
 #endif
 
 enum {
-    I420_FOURCC = '024I' // FIXME
+    I420_FOURCC = '024I', // FIXME
+    RV32_FOURCC = '23VR', // FIXME
 };
 
 struct vmem2_video_format_t
