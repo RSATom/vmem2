@@ -17,10 +17,4 @@ set_target_properties( ${PLUGIN_NAME} PROPERTIES LINK_FLAGS "-static")
 target_include_directories( ${PLUGIN_NAME} PRIVATE "../include" )
 target_include_directories( ${PLUGIN_NAME} PRIVATE "../deps/libvlc-sdk/include/vlc/plugins" )
 
-find_library( LIBVLCCORE_LIBRARY NAMES vlccore libvlccore
-    HINTS "$ENV{LIBVLC_LIBRARY_PATH}"
-          "${CMAKE_CURRENT_SOURCE_DIR}/deps/libvlc-sdk/lib/"
-    PATHS  "/Applications/VLC.app/Contents/MacOS/lib"
-    )
-
 target_link_libraries( ${PLUGIN_NAME} ${LIBVLCCORE_LIBRARY} )

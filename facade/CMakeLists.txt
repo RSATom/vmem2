@@ -14,10 +14,4 @@ target_include_directories( ${PROJECT_NAME} PUBLIC "../include" )
 target_include_directories( ${PROJECT_NAME} PUBLIC "../deps/libvlc-sdk/include" )
 target_include_directories( ${PROJECT_NAME} PRIVATE "../deps/libvlc-sdk/include/vlc/plugins" )
 
-find_library( LIBVLCCORE_LIBRARY NAMES vlccore libvlccore
-    HINTS "$ENV{LIBVLC_LIBRARY_PATH}"
-          "${CMAKE_CURRENT_SOURCE_DIR}/deps/libvlc-sdk/lib/"
-    PATHS  "/Applications/VLC.app/Contents/MacOS/lib"
-    )
-
 target_link_libraries( ${PROJECT_NAME} ${LIBVLCCORE_LIBRARY} )
