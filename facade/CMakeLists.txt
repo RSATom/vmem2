@@ -15,3 +15,9 @@ target_include_directories( ${PROJECT_NAME} PUBLIC "../deps/libvlc-sdk/include" 
 target_include_directories( ${PROJECT_NAME} PRIVATE "../deps/libvlc-sdk/include/vlc/plugins" )
 
 target_link_libraries( ${PROJECT_NAME} ${LIBVLCCORE_LIBRARY} )
+
+install( TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    )

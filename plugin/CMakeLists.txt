@@ -18,3 +18,9 @@ target_include_directories( ${PLUGIN_NAME} PRIVATE "../include" )
 target_include_directories( ${PLUGIN_NAME} PRIVATE "../deps/libvlc-sdk/include/vlc/plugins" )
 
 target_link_libraries( ${PLUGIN_NAME} ${LIBVLCCORE_LIBRARY} )
+
+install( TARGETS ${PLUGIN_NAME}
+    RUNTIME DESTINATION bin/plugins/video_output
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    )

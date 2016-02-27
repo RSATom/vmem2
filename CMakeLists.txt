@@ -20,5 +20,7 @@ else()
     message( FATAL_ERROR "Only MINGW supported at the moment." )
 endif()
 
+set( CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR} CACHE PATH "install to" FORCE )
+
 add_subdirectory( plugin )
 add_subdirectory( facade )
