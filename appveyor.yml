@@ -1,0 +1,40 @@
+environment:
+  VLC_VER: 2.2.2
+
+  matrix:
+    - BUILD_ARCH: "x86"
+    - BUILD_ARCH: "x64"
+
+install:
+  - git submodule update --init --recursive
+
+before_build:
+  - set BUILD_DIR=%APPVEYOR_BUILD_FOLDER%\build
+  - if "%BUILD_ARCH%"=="x86" path C:\msys64\mingw32\bin;
+  - if "%BUILD_ARCH%"=="x64" path C:\msys64\mingw64\bin;
+  - path C:\Program Files (x86)\CMake\bin;C:\Program Files\7-Zip;%PATH%
+
+build_script:
+  - build.cmd
+
+after_build:
+  - set VMEM2_ARCHIVE=vmem2_%APPVEYOR_REPO_TAG_NAME%_VLC_v%VLC_VER%_%BUILD_ARCH%_win.zip
+  - 7z a %BUILD_DIR%\bin\%VMEM2_ARCHIVE% %BUILD_DIR%\bin\*
+
+artifacts:
+  - path: build\bin\$(VMEM2_ARCHIVE)
+
+deploy:
+  provider: GitHub
+
+  auth_token:
+    secure: lJrMMwqwi1suASlU+raxug971oNJjkn8kNu+7sXpDIxSH1wGIKcjeME1TIO1Pu3a
+
+  tag: $(APPVEYOR_REPO_TAG_NAME)
+
+  release: vmem2 $(APPVEYOR_REPO_TAG_NAME)
+
+  artifact: build\bin\$(VMEM2_ARCHIVE)
+
+  on:
+    appveyor_repo_tag: true
